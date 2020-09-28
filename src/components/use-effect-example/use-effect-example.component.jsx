@@ -9,15 +9,16 @@ const UseEffectExample = () => {
 
   useEffect(() => {
     //console.log('hello');
-    const fetchFunc = async () => {
+    if(searchQuery.length > 0){
+      const fetchFunc = async () => {
       const response = await fetch(
         `https://jsonplaceholder.typicode.com/users?username=${searchQuery}`
       );
       const resJson = await response.json();
       setUser(resJson[0]);
-    };
-
-    fetchFunc();
+      };
+      fetchFunc();   
+    }
   }, [searchQuery]);
 
   return (
